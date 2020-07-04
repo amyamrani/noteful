@@ -1,0 +1,45 @@
+.app-header {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  border-bottom: 2px solid black;
+}
+
+.app-header__link, .app-header__link:visited {
+  color: black;
+  text-decoration: none;
+}
+
+.app-grid {
+  display: flex;
+  padding: 0 10px;
+}
+
+.app-grid__content {
+  flex: 1;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.back-button {
+  background-color: white;
+  margin-top: 20px;
+  border: 2px solid black;
+  padding: 10px;
+  width: 200px;
+  font-size: 16px;
+}
+
+.note-folder-name {
+  text-align: right;
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.note-content {
+  padding: 0 5px;
+}
+
