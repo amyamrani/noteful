@@ -2,10 +2,10 @@
   background-color: white;
   border: 2px solid black; 
   padding: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 10px;  
 }
 
-.note__name {
+.note__title {
   color: black;
   font-weight: bold;
   font-size: 22px;
@@ -16,7 +16,24 @@
   color: black;
 }
 
+.note__flex {
+  display: flex;
+  justify-content: space-between;
+}
+
 .note__date {
   margin-top: 25px;
+}
 
+.note__delete {
+  background-color: white;
+  font-weight: bold;
+  font-size:16px;
+  padding: 10px;
+}
+
+.note__delete:hover {
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
 }

@@ -30,6 +30,13 @@
   padding: 10px;
   width: 200px;
   font-size: 16px;
+  font-weight: bold;
+}
+
+.back-button:hover {
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
 }
 
 .note-folder-name {

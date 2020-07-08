@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import APIContext from '../APIContext';
 import './Note.css';
+
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 function getNumberWithOrdinal(n) {
   var s = ["th", "st", "nd", "rd"],
@@ -8,9 +13,29 @@ function getNumberWithOrdinal(n) {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
+function handleDeleteNote(noteId, callback) {
+
+  fetch(`http://localhost:9090/notes/${noteId}`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json'
+    },
+  })
+    .then(res => {
+      if (!res.ok) {
+        return res.json().then(error => {
+          throw error
+        })
+      }
+      return res.json()
+    })
+    .then(data => {
+      callback(noteId)
+    }) 
+    .catch(error => {
+      console.error(error)
+    })
+}
 
 class Note extends Component {  
   formatDate(modified) {
@@ -20,12 +45,39 @@ class Note extends Component {
   
   render() {
     return (
-      <div className='note'>
-        <Link className='note__name' to={`/note/${this.props.note.id}`}>{this.props.note.name}</Link>
-        <div className='note__date'>
-          Date modified on {this.formatDate(this.props.note.modified)}
-        </div> 
-      </div>
+      <APIContext.Consumer>
+        {(context) => (
+          <div className='note'>
+            <div>
+              <Link  
+                to={`/note/${this.props.note.id}`}
+                className='note__title'
+              >
+                {this.props.note.name}
+              </Link>
+            </div>
+
+            <div className='note__flex'>
+              <div className='note__date'>
+                Date modified on {this.formatDate(this.props.note.modified)}
+              </div> 
+              
+                <button
+                  className='note__delete'
+                  type='button'
+                  onClick={() => {
+                    handleDeleteNote(
+                      this.props.note.id,
+                      context.deleteNote,
+                    )
+                  }}
+                >
+                  Delete Note 
+                </button>  
+              </div>
+          </div>
+        )}     
+      </APIContext.Consumer>  
     )
   }
 } 
