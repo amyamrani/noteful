@@ -1,0 +1,30 @@
+.add-folder-form__name {
+  margin-top: 5px;
+  width: 200px;
+  height: 25px;
+  padding: 5px;
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+
+.add-folder-form__button-group {
+  display: flex;
+  margin-top: 20px;
+}
+
+.add-folder-form__button {
+  background: white;
+  text-align: center;
+  padding: 10px 0;
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  width: 150px;
+  font-weight: bold;
+}
+
+.add-folder-form__button:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './Sidebar.css'
 
 class Sidebar extends Component {
@@ -10,5 +11,9 @@ class Sidebar extends Component {
     )
   }
 }
+
+Sidebar.propTypes = {
+  children: PropTypes.element.isRequired,
+};
 
 export default Sidebar;

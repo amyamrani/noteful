@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Note from '../Note/Note';
 import APIContext from '../APIContext';
+import { Link } from 'react-router-dom';
+import './NotesList.css';
 
 class NotesList extends Component {
-  static defaultProps = {
-    notes: []
-  };
-
   static contextType = APIContext;
 
   render() {
@@ -19,17 +18,30 @@ class NotesList extends Component {
     }
     
     return (
-      <div className='note-list'>
-        {notes.map(note => (
-          <Note 
-            key={note.id}
-            note={note} 
-          />
-        ))}
-      </div>  
+      <div>
+        <div className='note-list'>
+          {notes.map(note => (
+            <Note 
+              key={note.id}
+              note={note} 
+            />
+          ))}
+        </div>
+
+        <div className='add-note'>
+          <Link to='/note/new' className='add-note__button'>Add Note</Link>
+        </div>
+      </div>
     )
   }
 }
 
-export default NotesList;
+NotesList.defaultProps = {
+  folderId: '',
+};
 
+NotesList.propTypes = {
+  folderId: PropTypes.string,
+};
+
+export default NotesList;

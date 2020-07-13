@@ -1,0 +1,57 @@
+.note-name-required {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.add-note-form__folder-dropdown {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 212px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.add-note-form__note-name {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+  height: 25px;
+  padding: 5px;
+  border: 1px solid black;
+  font-size: 16px;
+}
+
+.add-note-form__content {
+  margin-top: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  width: 200px;
+}
+
+.add-note-form__button-group {
+  display: flex;
+  margin-top: 20px;
+}
+
+.add-note-form__button {
+  background: white;
+  text-align: center;
+  padding: 10px 0;
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  width: 150px;
+  font-weight: bold;
+}
+
+.add-note-form__button:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.error-label {
+  color: red;
+  margin-left: 5px;
+  font-size: 14px;
+}

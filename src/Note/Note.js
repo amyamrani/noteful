@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import APIContext from '../APIContext';
 import './Note.css';
@@ -14,7 +15,6 @@ function getNumberWithOrdinal(n) {
 }
 
 function handleDeleteNote(noteId, callback) {
-
   fetch(`http://localhost:9090/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
@@ -81,6 +81,10 @@ class Note extends Component {
     )
   }
 } 
+
+Note.propTypes = {
+  note: PropTypes.object.isRequired,
+};
 
 export default Note;
 

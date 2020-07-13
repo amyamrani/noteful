@@ -30,10 +30,10 @@
   font-weight: bold;
   font-size:16px;
   padding: 10px;
+  border: 2px solid black; 
 }
 
 .note__delete:hover {
   background-color: lightblue;
-  color: white;
   cursor: pointer;
 }
