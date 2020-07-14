@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import './AddNote.css';
+import routerProps from '../helpers/routerProps';
 
 class AddNote extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -16,8 +18,10 @@ class AddNote extends Component {
       error: null,
       submitted: false,
     }
+    
   }
 
+  static propTypes = routerProps
   static contextType = APIContext;
 
   updateName = (name) => {
