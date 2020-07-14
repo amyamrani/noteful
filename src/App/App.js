@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Route, Link, Redirect, Switch } from 'react-router-dom';
+import { Link, Redirect, Route, Switch } from 'react-router-dom';
+import AddFolder from '../AddFolder/AddFolder';
+import AddNote from '../AddNote/AddNote';
 import APIContext from '../APIContext';
-import Sidebar from '../Sidebar/Sidebar';
+import AppError from '../AppError';
+import config from '../config';
 import FolderList from '../FolderList/FolderList';
 import Note from '../Note/Note';
 import NotesList from '../NotesList/NotesList';
-import AddFolder from '../AddFolder/AddFolder';
-import AddNote from '../AddNote/AddNote';
-import AppError from '../AppError';
+import Sidebar from '../Sidebar/Sidebar';
 import './App.css';
 
 
@@ -22,7 +23,7 @@ class App extends Component {
   }
 
   deleteNote = noteId => {
-    const newNotes = this.state.notes.filter(note => 
+    const newNotes = this.state.notes.filter(note =>
       note.id !== noteId
     )
     this.setState({
@@ -44,16 +45,16 @@ class App extends Component {
       newNote: {
         hasError: false,
         touched: true,
-      } 
+      }
     });
   }
 
   componentDidMount() {
     Promise.all([
-      fetch(`http://localhost:9090/notes`),
-      fetch(`http://localhost:9090/folders`)
+      fetch(`${config.API_BASE_URL}/notes`),
+      fetch(`${config.API_BASE_URL}/folders`)
     ])
-   
+
       .then(([resNotes, resFolders]) => {
         if (!resNotes.ok) {
           throw new Error(resNotes.status)
@@ -64,7 +65,7 @@ class App extends Component {
         return Promise.all([resNotes.json(), resFolders.json()]);
       })
       .then(([notes, folders]) => {
-        this.setState({notes, folders});
+        this.setState({ notes, folders });
       })
       .catch(error => this.setState({ error }))
   }
@@ -114,7 +115,7 @@ class App extends Component {
                       }
 
                       const folder = contextValue.folders.find(folder => folder.id === note.folderId)
-                      
+
                       return (
                         note && (
                           <div>
@@ -124,7 +125,7 @@ class App extends Component {
                         )
                       )
                     }}
-                  /> 
+                  />
                 </Switch>
               </Sidebar>
 
@@ -148,7 +149,7 @@ class App extends Component {
                   <Route
                     path='/note/new'
                     component={AddNote}
-                  />   
+                  />
                   <Route
                     path='/note/:noteId'
                     render={(routerProps) => {
@@ -162,17 +163,17 @@ class App extends Component {
                             <p className='note-content'>{note.content}</p>
                           </div>
                         )
-                      )  
+                      )
                     }}
                   />
                 </Switch>
               </main>
-            </div>        
-          </div> 
+            </div>
+          </div>
         </AppError>
       </APIContext.Provider>
     );
   }
-}  
+}
 
 export default App;

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import APIContext from '../APIContext';
+import config from '../config';
 import './Note.css';
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -15,7 +16,7 @@ function getNumberWithOrdinal(n) {
 }
 
 function handleDeleteNote(noteId, callback) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
+  fetch(`${config.API_BASE_URL}/notes/${noteId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json'

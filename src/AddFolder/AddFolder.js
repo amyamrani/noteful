@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
 import './AddFolder.css';
+import config from '../config';
 
 class AddFolder extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class AddFolder extends Component {
     
     this.setState({ error: null })
 
-    fetch(`http://localhost:9090/folders`, {
+    fetch(`${config.API_BASE_URL}/folders`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
