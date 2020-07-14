@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
 import './AddNote.css';
 import routerProps from '../helpers/routerProps';
+import config from '../config';
 
 class AddNote extends Component {
   
@@ -51,7 +52,7 @@ class AddNote extends Component {
     
     this.setState({ error: null });
 
-    fetch(`http://localhost:9090/notes`, {
+    fetch(`${config.API_BASE_URL}/notes`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
