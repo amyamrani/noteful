@@ -152,6 +152,7 @@ class App extends Component {
                   <Route
                     path='/note/:noteId'
                     render={(routerProps) => {
+                      console.log(`routerProps`, routerProps)
                       const noteId = routerProps.match.params.noteId;
                       const note = contextValue.notes.find(note => note.id === noteId)
                       return (

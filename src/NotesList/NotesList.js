@@ -41,7 +41,7 @@ NotesList.defaultProps = {
 };
 
 NotesList.propTypes = {
-  folderId: PropTypes.string,
+  folderId: PropTypes.string.isRequired,
 };
 
 export default NotesList;
