@@ -12,6 +12,10 @@
   text-decoration: none;
 }
 
+.note__title:hover {
+  text-decoration: underline;
+}
+
 .note__name:visited {
   color: black;
 }

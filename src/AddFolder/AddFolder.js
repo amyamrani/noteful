@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import APIContext from '../APIContext';
+import routerProps from '../helpers/routerProps';
 import './AddFolder.css';
 import config from '../config';
 
@@ -80,5 +81,7 @@ class AddFolder extends Component {
     )
   }
 }
+
+AddFolder.propTypes = routerProps;
 
 export default AddFolder;

@@ -22,7 +22,6 @@ class AddNote extends Component {
     
   }
 
-  static propTypes = routerProps
   static contextType = APIContext;
 
   updateName = (name) => {
@@ -153,5 +152,7 @@ class AddNote extends Component {
     )
   }
 }
+
+AddNote.propTypes = routerProps;
 
 export default AddNote;

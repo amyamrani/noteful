@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Note from '../Note/Note';
 import APIContext from '../APIContext';
+import routerProps from '../helpers/routerProps';
 import { Link } from 'react-router-dom';
 import './NotesList.css';
 
@@ -41,7 +42,8 @@ NotesList.defaultProps = {
 };
 
 NotesList.propTypes = {
-  folderId: PropTypes.string.isRequired,
-};
+  ...routerProps,
+  folderId: PropTypes.string,
+}
 
 export default NotesList;
