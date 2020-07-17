@@ -14,7 +14,10 @@ class AddNote extends Component {
         value: '',
         touched: false,
       },
-      content: '',
+      content: {
+        value: '',
+        touched: false,
+      },
       folderId: '',
       error: null,
       submitted: false,
@@ -33,7 +36,7 @@ class AddNote extends Component {
   }
 
   updateContent = (content) => {
-    this.setState({ content: content });
+    this.setState({content: { value: content, touched: true }});
   }
 
   validateName = () => {
@@ -42,10 +45,16 @@ class AddNote extends Component {
     }
   }
 
+  validateContent = () => {
+    if (this.state.content.value.length === 0) {
+      return 'Content is required'
+    }
+  }
+
   handleNewNote = (event) => {
     event.preventDefault();
 
-    if (!this.state.name.value) {
+    if (!this.state.name.value || !this.state.content.value) {
       return;
     }
     
@@ -58,7 +67,7 @@ class AddNote extends Component {
       },
       body: JSON.stringify({
         name: this.state.name.value,
-        content: this.state.content,
+        content: this.state.content.value,
         folderId: this.state.folderId,
         modified: new Date(),
       })
@@ -127,7 +136,11 @@ class AddNote extends Component {
           />
 
           <div>
-            <label htmlFor='content'>Content: </label>
+            <label htmlFor='content'>Content*: 
+              <span className="error-label">
+                {this.state.content.touched && this.validateContent()}
+              </span>
+            </label>
           </div>
           
           <textarea
@@ -136,7 +149,7 @@ class AddNote extends Component {
             name='content'
             id='content'
             onChange={event => this.updateContent(event.target.value)} 
-            value={this.state.content}
+            value={this.state.content.value}
           />
         </div>
 
