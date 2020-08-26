@@ -27,6 +27,7 @@
   padding: 5px;
   border: 1px solid black;
   width: 200px;
+  min-height: 150px;
 }
 
 .add-note-form__button-group {
@@ -43,6 +44,7 @@
   border: 2px solid black;
   width: 150px;
   font-weight: bold;
+  font-size: 16px;
 }
 
 .add-note-form__button:hover {

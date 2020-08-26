@@ -1,8 +1,9 @@
 .add-note {
   display: flex;
+  margin-bottom: 10px;
 }
 
-.add-note__button {
+.add-note__button, .folder-delete__button, .folder-edit__button {
   background: white;
   text-align: center;
   padding: 10px 0;
@@ -11,9 +12,15 @@
   border: 2px solid black;
   width: 190px;
   font-weight: bold;
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.add-note__button:hover {
+.add-note__button:hover, .folder-delete__button:hover, .folder-edit__button:hover {
   background-color: lightblue;
   cursor: pointer;
+}
+
+.folder-delete, .folder-edit {
+  margin-bottom: 10px;
 }

@@ -22,14 +22,6 @@ function handleDeleteNote(noteId, callback) {
       'content-type': 'application/json'
     },
   })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-      return res.json()
-    })
     .then(data => {
       callback(noteId)
     }) 
@@ -60,9 +52,13 @@ class Note extends Component {
 
             <div className='note__flex'>
               <div className='note__date'>
-                Date modified on {this.formatDate(this.props.note.modified)}
+                Date modified on {this.formatDate(this.props.note.modified_date)}
               </div> 
               
+
+              <div>
+                <Link to={`/note/${this.props.note.id}/edit`} className='note__edit'>Edit Note</Link>
+
                 <button
                   className='note__delete'
                   type='button'
@@ -76,6 +72,7 @@ class Note extends Component {
                   Delete Note 
                 </button>  
               </div>
+            </div>
           </div>
         )}     
       </APIContext.Consumer>  

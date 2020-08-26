@@ -41,3 +41,22 @@
   background-color: lightblue;
   cursor: pointer;
 }
+
+
+.note__edit {
+  background: white;
+  text-align: center;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+  border: 2px solid black;
+  font-weight: bold;
+  font-size: 16px;
+  box-sizing: border-box;
+  margin-right: 20px;
+}
+
+.note__edit:hover {
+  background-color: lightblue;
+  cursor: pointer;
+}

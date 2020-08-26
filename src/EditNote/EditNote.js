@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import APIContext from '../APIContext';
-import './AddNote.css';
-import routerProps from '../helpers/routerProps';
+import PropTypes from 'prop-types';
 import config from '../config';
 
-class AddNote extends Component {
-  
+class EditNote extends Component {  
   constructor(props) {
     super(props);
     this.state = {
       name: {
-        value: '',
+        value: props.note.name,
         touched: false,
       },
       content: {
-        value: '',
+        value: props.note.content,
         touched: false,
       },
-      folderId: '',
+      folderId: props.note.folder_id,
       error: null,
       submitted: false,
     }
-    
   }
 
   static contextType = APIContext;
@@ -51,7 +48,7 @@ class AddNote extends Component {
     }
   }
 
-  handleNewNote = (event) => {
+  handleUpdateNote = (event) => {
     event.preventDefault();
 
     if (!this.state.name.value || !this.state.content.value) {
@@ -60,29 +57,23 @@ class AddNote extends Component {
     
     this.setState({ error: null });
 
-    fetch(`${config.API_BASE_URL}/notes`, {
-      method: 'POST',
+    const newNote = {
+      name: this.state.name.value,
+      content: this.state.content.value,
+      folder_id: this.state.folderId,
+      modified_date: new Date(),
+    };
+
+    fetch(`${config.API_BASE_URL}/notes/${this.props.note.id}`, {
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify({
-        name: this.state.name.value,
-        content: this.state.content.value,
-        folder_id: this.state.folderId,
-        modified_date: new Date(),
-      })
-    })
-    .then(res => {
-      if (!res.ok) {
-        return res.json().then(error => {
-          throw error
-        })
-      }
-      return res.json()
+      body: JSON.stringify(newNote)
     })
     .then(data => {
       this.setState({submitted: true});
-      this.context.addNewNote(data);
+      this.context.updateNote(this.props.note.id, newNote);
     }) 
     .catch(error => {
       this.setState({ error })
@@ -95,7 +86,7 @@ class AddNote extends Component {
     }
 
     return (
-      <form className='add-note-form' onSubmit={event => this.handleNewNote(event)}>
+      <form className='add-note-form' onSubmit={event => this.handleUpdateNote(event)}>
         <div>
           <div className="error-label">
             {this.state.error}
@@ -158,7 +149,7 @@ class AddNote extends Component {
             type='submit'
             className='add-note-form__button'
           >
-            Add Note
+            Save Note
           </button>
         </div> 
       </form>
@@ -166,6 +157,12 @@ class AddNote extends Component {
   }
 }
 
-AddNote.propTypes = routerProps;
+EditNote.propTypes = {
+  note: PropTypes.object,
+}
 
-export default AddNote;
+EditNote.defaultProps = {
+  note: {},
+};
+
+export default EditNote;
